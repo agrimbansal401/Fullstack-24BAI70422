@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banking UI</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 15px;
+            color: white;
+            border: none;
+            margin: 10px;
+        }
+
+        .deposit {
+            background-color: blue;
+        }
+
+        .withdraw {
+            background-color: red;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Balance: $<span id="balance">1000</span></h2>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <br><br>
+
+    <button class="deposit" onclick="addMoney()">Deposit</button>
+    <button class="withdraw" onclick="takeMoney()">Withdraw</button>
+
+    <p id="message"></p>
+
+<script>
+    let balance = 1000;
+
+    function addMoney() {
+        let value = Number(document.getElementById("amount").value);
+
+        if (value <= 0) {
+            showMessage("Invalid amount");
+            return;
+        }
+
+        balance = balance + value;
+        updateBalance();
+    }
+
+    function takeMoney() {
+        let value = Number(document.getElementById("amount").value);
+
+        if (value <= 0 || value > balance) {
+            showMessage("Invalid amount");
+            return;
+        }
+
+        balance = balance - value;
+        updateBalance();
+    }
+
+    function updateBalance() {
+        document.getElementById("balance").innerText = balance;
+        showMessage("");
+    }
+
+    function showMessage(text) {
+        document.getElementById("message").innerText = text;
+    }
+</script>
+
+</body>
+</html>
